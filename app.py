@@ -295,8 +295,7 @@ def create_google_meet_link(summary="Mentor Meeting", start_time=None, end_time=
 
 
 
-
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
-    app.run(debug=True)
+    app.run()
