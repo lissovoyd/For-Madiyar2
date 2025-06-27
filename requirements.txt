@@ -11,11 +11,6 @@ google-api-python-client
 pandas
 joblib
 xgboost
-psycopg2
-datetime
-flask_admin.contrib.sqla
-flask_admin.form
-sqlalchemy.dialects.postgresql
-os
+psycopg2-binary
 scikit-learn
 numpy
