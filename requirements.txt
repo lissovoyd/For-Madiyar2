@@ -14,3 +14,4 @@ xgboost
 psycopg2-binary
 scikit-learn
 numpy
+Pillow>=9.0.0
