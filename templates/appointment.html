@@ -8,21 +8,40 @@
   <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
   <style>
     .custom-alert {
-        background-color: #f3e8ff;
-        color: #5a189a;
-        border-left: 6px solid #764ba2;
-        padding: 1rem 1.25rem;
-        border-radius: 0.5rem;
-        font-size: 1.05rem;
-        }
-        .custom-alert a {
-        color: #5a189a;
-        font-weight: 500;
-        text-decoration: underline;
-        }
+    background: linear-gradient(145deg, #ede9fe, #fff);
+    color: #4c1d95;
+    border-left: 5px solid #7c3aed;
+    padding: 1rem 1.25rem;
+    border-radius: 0.75rem;
+    font-size: 1.05rem;
+    box-shadow: 0 4px 10px rgba(124, 58, 237, 0.1);
+    position: relative;
+  }
 
+
+
+  .custom-alert a {
+    display: inline-block;
+    margin-top: 0.5rem;
+    color: #5b21b6;
+    font-weight: 600;
+    word-break: break-word;
+  }
+
+  @media (max-width: 576px) {
+    .appt-card {
+      margin: 2rem 1rem;
+      padding: 1.5rem;
+    }
+
+    .custom-alert {
+      font-size: 1rem;
+      padding: 1rem;
+    }
+  }
 
     body { background: #f0f4f8; }
+
     .appt-card {
       max-width: 600px;
       margin: 4rem auto;
@@ -31,54 +50,69 @@
       border-radius: 1rem;
       box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
     }
-    h2 { font-size: 1.8rem; text-align: center; margin-bottom: 1.5rem; font-weight: 600; }
+
+    h2 {
+      font-size: 1.8rem;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+    }
+
     label { font-weight: 500; }
-    .btn-success { background-color: #764ba2; border: none; }
-    .btn-success:hover { background-color: #667eea; }
+
+    .btn-success {
+      background-color: #764ba2;
+      border: none;
+    }
+
+    .btn-success:hover {
+      background-color: #667eea;
+    }
   </style>
 </head>
 <body>
-<div class="appt-card">
-  <h2>📅 Book a Call with a Mentor</h2>
+<div class="container px-3">
+  <div class="appt-card">
+    <h2>📅 Book a Call with a Mentor</h2>
 
-  {% if meeting_link %}
-    <div class="custom-alert mt-4">
-        ✅ Appointment confirmed!<br>
+    {% if meeting_link %}
+      <div class="custom-alert mt-4">
+        ✅   Appointment confirmed!<br>
         Meeting link: <a href="{{ meeting_link }}" target="_blank">{{ meeting_link }}</a>
-    </div>
-  {% else %}
-    <form method="POST" id="booking-form">
-      <div class="mb-3">
-        <label for="mentor_id" class="form-label">Select Mentor:</label>
-        <select id="mentor_id" name="mentor_id" class="form-select" required>
-          <option value="">-- Choose --</option>
-          {% for mentor in mentors %}
-            <option value="{{ mentor.id }}">{{ mentor.name }} — {{ mentor.bio_line1 }}</option>
-          {% endfor %}
-        </select>
       </div>
+    {% else %}
+      <form method="POST" id="booking-form">
+        <div class="mb-3">
+          <label for="mentor_id" class="form-label">Select Mentor:</label>
+          <select id="mentor_id" name="mentor_id" class="form-select" required>
+            <option value="">-- Choose --</option>
+            {% for mentor in mentors %}
+              <option value="{{ mentor.id }}">{{ mentor.name }} — {{ mentor.bio_line1 }}</option>
+            {% endfor %}
+          </select>
+        </div>
 
-      <div class="mb-3">
-        <label for="date" class="form-label">Choose a Date:</label>
-        <input type="text" id="date" name="date" class="form-control" required disabled>
-      </div>
+        <div class="mb-3">
+          <label for="date" class="form-label">Choose a Date:</label>
+          <input type="text" id="date" name="date" class="form-control" required disabled>
+        </div>
 
-      <div class="mb-3">
-        <label for="time" class="form-label">Choose a Time:</label>
-        <select id="time" name="time" class="form-select" required disabled>
-          <option value="">-- Select Time --</option>
-        </select>
-      </div>
+        <div class="mb-3">
+          <label for="time" class="form-label">Choose a Time:</label>
+          <select id="time" name="time" class="form-select" required disabled>
+            <option value="">-- Select Time --</option>
+          </select>
+        </div>
 
-      <button type="submit" class="btn btn-success w-100">Confirm Booking</button>
-    </form>
-  {% endif %}
+        <button type="submit" class="btn btn-success w-100">Confirm Booking</button>
+      </form>
+    {% endif %}
 
-  <a href="{{ url_for('mentor_list') }}" class="btn btn-outline-secondary mt-4 w-100">← Back to Mentor List</a>
+    <a href="{{ url_for('mentor_list') }}" class="btn btn-outline-secondary mt-4 w-100">← Back to Mentor List</a>
+  </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-
 <script>
   const mentorData = {{ mentor_data | tojson | safe }};
   const TIME_CHOICES = {{ TIME_CHOICES | tojson | safe }};
