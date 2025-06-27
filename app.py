@@ -206,8 +206,12 @@ def form_page():
     return render_template('form.html', result=result)
 
 
-@app.route('/mentors')
+@app.route('/mentors', methods=["GET", "POST"])
 def mentor_list():
+    if request.method == "POST":
+        session["user_name"] = request.form.get("user_name")
+        session["email"] = request.form.get("email")
+
     mentors = Mentor.query.all()
     return render_template("mentors.html", mentors=mentors)
 
@@ -252,8 +256,8 @@ def book_appointment():
         )
 
         appointment = Appointment(
-            user_name="Unknown",
-            email="user@example.com",
+            user_name=session.get("user_name", "Unknown"),
+            email=session.get("email", "user@example.com"),
             mentor_id=selected_mentor.id,
             date=date,
             time=final_time_str,
