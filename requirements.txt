@@ -1,10 +1,4 @@
-<<<<<<< HEAD
 flask
 gunicorn
 jinja2
-=======
-flask
-gunicorn
-jinja2
->>>>>>> 39c88ae (Complete upload with templates and static)
 requests
