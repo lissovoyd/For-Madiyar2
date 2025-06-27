@@ -241,7 +241,7 @@ def book_appointment():
 @app.route("/oauth2callback")
 def oauth2callback():
     flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
-        "client_secret.json",
+        "/etc/secrets/client_secret.json",
         scopes=["https://www.googleapis.com/auth/calendar.events"],
         redirect_uri=url_for("oauth2callback", _external=True)
     )
