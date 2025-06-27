@@ -323,7 +323,10 @@ def create_google_meet_link(summary="Mentor Meeting", start_time=None, end_time=
         calendarId="primary", body=event, conferenceDataVersion=1
     ).execute()
 
-    print("✅ Google Meet created:", created_event.get("hangoutLink"))
+    try:
+        print("Google Meet created:", created_event.get("hangoutLink"))
+    except OSError:
+        pass
     return created_event["hangoutLink"]
 
 
