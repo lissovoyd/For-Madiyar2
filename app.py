@@ -166,6 +166,16 @@ def predict_api():
 
 
 
+@app.route("/init-db")
+def init_db():
+    try:
+        db.create_all()
+        return "✅ Tables created successfully!"
+    except Exception as e:
+        return f"❌ Error creating tables: {e}"
+
+
+
 @app.route('/test-db')
 def test_db():
     try:
