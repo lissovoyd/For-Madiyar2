@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import joblib
 import pandas as pd
 
@@ -38,4 +37,4 @@ def predict_salary(profile_dict):
     df = df[input_columns]  # Reorder to match training
     prediction = model.predict(df)[0]
     return round(float(prediction), 2)
->>>>>>> 39c88ae (Complete upload with templates and static)
+
