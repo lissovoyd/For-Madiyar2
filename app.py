@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 from flask import Flask, render_template, request, redirect, url_for, session, abort
 from flask_sqlalchemy import SQLAlchemy
 from flask_session import Session
@@ -600,4 +599,4 @@ def create_google_meet_link(summary="Mentor Meeting", start_time=None, end_time=
 
 if __name__ == '__main__':
     app.run(debug=True)
->>>>>>> 39c88ae (Complete upload with templates and static)
+
