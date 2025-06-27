@@ -49,6 +49,13 @@ Session(app)
 db = SQLAlchemy(app)
 admin = Admin(app, name='Mentor Admin', template_mode='bootstrap4')
 
+with app.app_context():
+    try:
+        db.create_all()
+        print("✅ Tables created (or already exist)")
+    except Exception as e:
+        print("⚠️ Failed to create tables:", e)
+
 # --- Models ---
 class Mentor(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -295,7 +302,4 @@ def create_google_meet_link(summary="Mentor Meeting", start_time=None, end_time=
 
 
 
-if __name__ == '__main__':
-    with app.app_context():
-        db.create_all()
-    app.run()
+
