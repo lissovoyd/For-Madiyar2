@@ -15,7 +15,7 @@ import googleapiclient.discovery
 from sqlalchemy.dialects.postgresql import ARRAY, INTEGER
 from datetime import datetime, timedelta
 from model import predict_salary
-from model import db 
+
 # --- App & Config ---
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")
