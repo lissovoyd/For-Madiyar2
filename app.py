@@ -166,6 +166,16 @@ def predict_api():
 
 
 
+@app.route('/test-db')
+def test_db():
+    try:
+        db.session.execute("SELECT * FROM mentor LIMIT 1")
+        return "✅ Mentor table exists."
+    except Exception as e:
+        return f"❌ DB error: {e}"
+
+
+
 # --- Routes ---
 @app.route('/', methods=['GET', 'POST'])
 def form_page():
