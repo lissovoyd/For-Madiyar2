@@ -167,9 +167,11 @@
     <div class="modal-content-custom">
       <h4 id="salary-result">💰 Predicted Salary: ...</h4>
       <p class="mt-3" style="font-size: 1.1rem;">Want to increase your salary? Our mentors can help 🚀</p>
-      <div class="d-grid gap-2 mt-3">
-        <a href="/mentors" class="btn btn-light">View Mentor List →</a>
-      </div>
+      <form action="/mentors" method="POST">
+        <input type="hidden" name="user_name" id="user_name_hidden">
+        <input type="hidden" name="email" id="email_hidden">
+        <button type="submit" class="btn btn-light">View Mentor List →</button>
+      </form>
     </div>
   </div>
 
@@ -196,6 +198,8 @@
         if (result.predicted_salary !== undefined) {
           const salary = Math.round(result.predicted_salary).toLocaleString();
           document.getElementById("salary-result").textContent = `💰 Predicted Salary: ${salary} KZT`;
+          document.getElementById("user_name_hidden").value = document.getElementById("name").value;
+          document.getElementById("email_hidden").value = document.getElementById("email").value;
           document.getElementById("salary-modal").style.display = "flex";
         } else {
           alert("⚠️ Prediction failed. Please try again.");
