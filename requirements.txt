@@ -12,3 +12,10 @@ pandas
 joblib
 xgboost
 psycopg2
+datetime
+flask_admin.contrib.sqla
+flask_admin.form
+sqlalchemy.dialects.postgresql
+os
+scikit-learn
+numpy
